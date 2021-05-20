@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AspnetNote.MVC6.DataContext;
+using AspnetNote.MVC6.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,7 @@ namespace AspnetNote.MVC6.Controllers
         /// login
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
@@ -20,9 +23,30 @@ namespace AspnetNote.MVC6.Controllers
         /// register
         /// </summary>
         /// <returns></returns>
-        public IActionResult Register() 
+        //[HttpPost]
+        //public IActionResult Login() 
+        //{ 
+        //}
+        public IActionResult Register()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult Register(User model)
+        {
+            if (ModelState.IsValid)
+            { 
+                // Java try(sqlsession){} catch(){}
+
+                //c#
+                using (var db = new AspnetNoteDbContext())
+                {
+                    db.Users.Add(model); //in memory
+                    db.SaveChanges(); //save sql
+                }
+                return RedirectToAction("Index", "Home");
+            }
+            return View(model);
         }
     }
 }
