@@ -19,14 +19,38 @@ namespace AspnetNote.MVC6.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Login(User model )
+        {
+            //ID, pwd
+            if (ModelState.IsValid) 
+            {
+                using (var db = new AspnetNoteDbContext())
+                {
+                    //Linq
+                    //=> a go to b
+                    //var user = db.Users
+                    //    .FirstOrDefault(u=>u.UserId == model.UserId && u.UserPassword == model.UserPassword);
+                    var user = db.Users
+                        .FirstOrDefault(u=>u.UserId.Equals(model.UserId) && 
+                                        u.UserPassword.Equals(model.UserPassword));
+                    if (user == null)
+                    { 
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+            return View(model);
+        }
         /// <summary>
         /// register
         /// </summary>
         /// <returns></returns>
-        //[HttpPost]
-        //public IActionResult Login() 
-        //{ 
-        //}
+       
         public IActionResult Register()
         {
             return View();
