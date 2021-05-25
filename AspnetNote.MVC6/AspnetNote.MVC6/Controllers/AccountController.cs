@@ -42,7 +42,7 @@ namespace AspnetNote.MVC6.Controllers
                 using (var db = new AspnetNoteDbContext())
                 {
                     db.Users.Add(model); //in memory
-                    db.SaveChanges(); //save sql
+                    db.SaveChanges(); //save sql, commit
                 }
                 return RedirectToAction("Index", "Home");
             }

@@ -13,19 +13,19 @@ namespace AspnetNote.MVC6.Models
         /// <summary>
         /// User Name
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "please input user name")]
         public string UserName { get; set; }
         /// <summary>
         /// User Id
         /// </summary>
         /// 
-        [Required]
+        [Required(ErrorMessage ="please input user id")]
         public string  UserId { get; set; }
 
         /// <summary>
         /// User Password
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "please input user password")]
         public string UserPassword { get; set; }
     }
 }
