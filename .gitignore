@@ -1,6 +1,6 @@
-﻿AspnetNote.MVC6/.vs.*
+﻿AspnetNote.MVC6/.vs/*
 AspnetNote.MVC6/AspnetNote.MVC6/bin/*
-AspnetNote.MVC6/AspnetNote.MVC6/obj/*
+AspnetNote.MVC6/AspnetNote.MVC6/obj/Debug/net5.0/*
 *.bak
 *.bat
 *.cmd
