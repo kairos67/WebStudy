@@ -1,6 +1,6 @@
-﻿AspnetNote.MVC6/.vs/*
-AspnetNote.MVC6/AspnetNote.MVC6/bin/*
-AspnetNote.MVC6/AspnetNote.MVC6/obj/Debug/net5.0/*
+﻿# AspnetNote.MVC6/.vs/*
+# AspnetNote.MVC6/AspnetNote.MVC6/bin/*
+# AspnetNote.MVC6/AspnetNote.MVC6/obj/Debug/net5.0/*
 *.bak
 *.bat
 *.cmd
@@ -16,6 +16,11 @@ AspnetNote.MVC6/AspnetNote.MVC6/obj/Debug/net5.0/*
 *.user
 *.userosscache
 *.sln.docstates
+*.bak
+*.dll
+*.exe
+*.pdb
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
