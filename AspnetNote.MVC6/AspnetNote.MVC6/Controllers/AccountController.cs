@@ -1,5 +1,6 @@
 ﻿using AspnetNote.MVC6.DataContext;
 using AspnetNote.MVC6.Models;
+using AspnetNote.MVC6.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace AspnetNote.MVC6.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(User model )
+        public IActionResult Login(LoginViewModel model )
         {
             //ID, pwd
             if (ModelState.IsValid) 
@@ -35,14 +36,14 @@ namespace AspnetNote.MVC6.Controllers
                     var user = db.Users
                         .FirstOrDefault(u=>u.UserId.Equals(model.UserId) && 
                                         u.UserPassword.Equals(model.UserPassword));
-                    if (user == null)
-                    { 
-                    }
-                    else
+                    if (user != null)
                     {
-
-                    }
+                        // success login
+                        return RedirectToAction("LoginSuccess", "Home"); //move success page                                                
+                    }                       
                 }
+                // fail login
+                ModelState.AddModelError(string.Empty, "ID or Password is worong!");
             }
             return View(model);
         }
