@@ -24,6 +24,12 @@ namespace AspnetNote.MVC6
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //DI 의존성 주입---middleware부분
+            // Session--서비스에 등록
+            services.AddSession();
+            // Identity
+            // Web API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +47,9 @@ namespace AspnetNote.MVC6
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            //Application에서 사용
+            app.UseSession();
 
             app.UseRouting();
 

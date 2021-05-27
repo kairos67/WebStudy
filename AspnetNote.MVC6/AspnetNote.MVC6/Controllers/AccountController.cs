@@ -1,6 +1,7 @@
 ﻿using AspnetNote.MVC6.DataContext;
 using AspnetNote.MVC6.Models;
 using AspnetNote.MVC6.ViewModel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,9 @@ namespace AspnetNote.MVC6.Controllers
                     if (user != null)
                     {
                         // success login
+                        //HttpContext.Session.SetInt32(Key, value);
+                        HttpContext.Session.SetInt32("USER_LOGIN_KEY", user.UserNo);
+
                         return RedirectToAction("LoginSuccess", "Home"); //move success page                                                
                     }                       
                 }
@@ -46,6 +50,13 @@ namespace AspnetNote.MVC6.Controllers
                 ModelState.AddModelError(string.Empty, "ID or Password is worong!");
             }
             return View(model);
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("USER_LOGIN_KEY");
+            return RedirectToAction("Index", "Home"); 
+            //HttpContext.Session.Clear(); all clear
         }
         /// <summary>
         /// register
