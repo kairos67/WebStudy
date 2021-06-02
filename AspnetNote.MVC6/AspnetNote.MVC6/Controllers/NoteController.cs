@@ -23,6 +23,23 @@ namespace AspnetNote.MVC6.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Add(Note model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var db = new AspnetNoteDbContext())
+                {
+                    db.Notes.Add(model);
+                    if (db.SaveChanges() > 0)
+                    {
+                        return Redirect("Index");
+                    }
+                }
+                ModelState.AddModelError(string.Empty,"Cannot save note.");
+            }
+            return View(model);
+        }
         public IActionResult Edit()
         {
             return View();
