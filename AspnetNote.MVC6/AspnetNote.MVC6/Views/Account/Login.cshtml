@@ -1,21 +1,36 @@
 ﻿@model AspnetNote.MVC6.ViewModel.LoginViewModel
-<h2>Login</h2>
 
-<form class="form-horizontal" method="post" asp-controller="Account" asp-action="Login">
-    <div class="form-group">
-        <label>User ID</label>
-        <input type="text" asp-for="UserId" class="form-control" placeholder="input User ID" />
-        <span class="text-danger" asp-validation-for="UserId"></span>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AspnetNote.MVC6</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <h2>Login</h2>
 
-    <div class="form-group">
-        <label>Password</label>
-        <input type="password" asp-for="UserPassword" class="form-control" placeholder="input Password" />
-        <span class="text-danger" asp-validation-for="UserPassword"></span>
-    </div>
+    <form class="form-horizontal" method="post" asp-controller="Account" asp-action="Login">
+        <div class="form-group">
+            @*<div class="form-group">*@
+            <label>User ID</label>
+            <input type="text" asp-for="UserId" class="form-control w-25" placeholder="input User ID" />
+            <span class="text-danger" asp-validation-for="UserId"></span>
+        </div>
 
-    <div class="form-group">
-        <button type="submit" class="btn btn-success">Login</button>
-        
-    </div>
-</form>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" asp-for="UserPassword" class="form-control" placeholder="input Password" />
+            <span class="text-danger" asp-validation-for="UserPassword"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Login</button>
+
+        </div>
+    </form>
+    
+</body>
+</html>
