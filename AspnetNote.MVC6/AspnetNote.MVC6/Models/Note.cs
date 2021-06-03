@@ -15,10 +15,10 @@ namespace AspnetNote.MVC6.Models
         [Key]
         public int NoteNo { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "please input Note Title")]
         public string NoteTitle { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "please input Note Content")]
         public string NoteContents { get; set; }
         
         [Required]

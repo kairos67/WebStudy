@@ -1,5 +1,6 @@
 ﻿using AspnetNote.MVC6.DataContext;
 using AspnetNote.MVC6.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,15 @@ namespace AspnetNote.MVC6.Controllers
 {
     public class NoteController : Controller
     {
+        
         public IActionResult Index()
         {
-            using (var db = new AspnetNoteDbContext())
+            if (HttpContext.Session.GetInt32("USER_LOGIN_KEY") == null)
+            {
+                // not log in
+                return RedirectToAction("Login", "Account");
+            }
+                using (var db = new AspnetNoteDbContext())
             {
                 var list = db.Notes.ToList();
                 return View(list);
@@ -21,11 +28,24 @@ namespace AspnetNote.MVC6.Controllers
         }
         public IActionResult Add()
         {
+            if (HttpContext.Session.GetInt32("USER_LOGIN_KEY") == null)
+            {
+                // not log in
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
         [HttpPost]
         public IActionResult Add(Note model)
         {
+            if (HttpContext.Session.GetInt32("USER_LOGIN_KEY") == null)
+            {
+                // not log in
+                return RedirectToAction("Login", "Account");
+            }
+
+            model.UserNo = int.Parse(HttpContext.Session.GetInt32("USER_LOGIN_KEY").ToString());
+
             if (ModelState.IsValid)
             {
                 using (var db = new AspnetNoteDbContext())
@@ -42,10 +62,20 @@ namespace AspnetNote.MVC6.Controllers
         }
         public IActionResult Edit()
         {
+            if (HttpContext.Session.GetInt32("USER_LOGIN_KEY") == null)
+            {
+                // not log in
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
         public IActionResult Delete()
         {
+            if (HttpContext.Session.GetInt32("USER_LOGIN_KEY") == null)
+            {
+                // not log in
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
     }
