@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <table style="width:100%" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>User No</th>
+                <th>User ID</th>
+                <th>User Name</th>
+                <th>User Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var UserList in Model)
+            {
+            <tr>
+                <td>@UserList.UserNo</td>
+                <td>@UserList.UserId</td>
+                <td>@UserList.UserName</td>
+                <td> &#42 @UserList.UserPassword  </td>
+                
+            </tr>
+            } 
+        </tbody>
+    </table>
+    
+   @* <a class="btn btn-warning" asp-controller="Account" asp-action="Add">User List</a>*@
+</body>
+</html>

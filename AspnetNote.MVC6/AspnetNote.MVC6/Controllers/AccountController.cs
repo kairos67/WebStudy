@@ -22,11 +22,28 @@ namespace AspnetNote.MVC6.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult UserList()
+        {
+
+            if (HttpContext.Session.GetInt32("USER_LOGIN_KEY") == null)
+            {
+                // not log in
+                return RedirectToAction("Login", "Account");
+            }
+            using (var db = new AspnetNoteDbContext())
+            {
+                var list = db.Users.ToList();
+                return View(list);
+            }
+
+        }
+
         [HttpPost]
-        public IActionResult Login(LoginViewModel model )
+        public IActionResult Login(LoginViewModel model)
         {
             //ID, pwd
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 using (var db = new AspnetNoteDbContext())
                 {
@@ -35,7 +52,7 @@ namespace AspnetNote.MVC6.Controllers
                     //var user = db.Users
                     //    .FirstOrDefault(u=>u.UserId == model.UserId && u.UserPassword == model.UserPassword);
                     var user = db.Users
-                        .FirstOrDefault(u=>u.UserId.Equals(model.UserId) && 
+                        .FirstOrDefault(u => u.UserId.Equals(model.UserId) &&
                                         u.UserPassword.Equals(model.UserPassword));
                     if (user != null)
                     {
@@ -44,7 +61,7 @@ namespace AspnetNote.MVC6.Controllers
                         HttpContext.Session.SetInt32("USER_LOGIN_KEY", user.UserNo);
 
                         return RedirectToAction("LoginSuccess", "Home"); //move success page                                                
-                    }                       
+                    }
                 }
                 // fail login
                 ModelState.AddModelError(string.Empty, "ID or Password is worong!");
@@ -55,14 +72,14 @@ namespace AspnetNote.MVC6.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("USER_LOGIN_KEY");
-            return RedirectToAction("Index", "Home"); 
+            return RedirectToAction("Index", "Home");
             //HttpContext.Session.Clear(); all clear
         }
         /// <summary>
         /// register
         /// </summary>
         /// <returns></returns>
-       
+
         public IActionResult Register()
         {
             return View();
@@ -71,7 +88,7 @@ namespace AspnetNote.MVC6.Controllers
         public IActionResult Register(User model)
         {
             if (ModelState.IsValid)
-            { 
+            {
                 // Java try(sqlsession){} catch(){}
 
                 //c#

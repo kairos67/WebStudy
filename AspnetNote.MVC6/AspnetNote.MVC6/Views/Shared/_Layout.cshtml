@@ -21,26 +21,28 @@
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav justify-content-between flex-grow-1">
 
-                    <ul class="nav navbar-nav align-content-center">
-                        <li><a asp-area="" asp-controller="Note" asp-action="Index">게시판</a></li>
-                    </ul>
+                        <ul class="nav navbar-nav align-content-center">
+                            <li><a asp-area="" asp-controller="Note" asp-action="Index">게시판</a></li>
+                        </ul>
 
-                    <ul class="nav navbar-nav justify-content-between ">
+                        <ul class="nav navbar-nav justify-content-between ">
 
-                        @if (Context.Session.GetInt32("USER_LOGIN_KEY") == null)
-                        {
-                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
-                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
-                        }
-                        else
-                        {
-                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
-                        }
-                    </ul>
+                            @if (Context.Session.GetInt32("USER_LOGIN_KEY") == null)
+                            {
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                            }
+                            else
+                            {
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="UserList">UserList</a></li>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
 
-                    @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>*@
+                            }
+                        </ul>
+
+                        @*<li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>*@
                     </ul>
                 </div>
             </div>
