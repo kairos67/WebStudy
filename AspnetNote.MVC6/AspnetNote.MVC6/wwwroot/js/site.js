@@ -19,7 +19,7 @@ $(".editor").trumbowyg({
         ['superscript', 'subscript'],
         ['link'],
         ['insertImage'],
-        'image',
+        ['image'],
         ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
         ['unorderedList', 'orderedList'],
         ['horizontalRule'],
