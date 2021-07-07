@@ -1,4 +1,5 @@
-﻿using Hello.MVC.Models;
+﻿using Hello.BLL;
+using Hello.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,16 +12,23 @@ namespace Hello.MVC.Controllers
 {
     public class HomeController : Controller
     {
+   
+        private readonly UserBll _userBll;
+        public HomeController(UserBll userBll)
+        {
+            _userBll = userBll;
+        }
+        public IActionResult Index()
+        {
+            var userList = _userBll.GetUserList();
+
+            return View();
+        }
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
 
         public IActionResult Privacy()
