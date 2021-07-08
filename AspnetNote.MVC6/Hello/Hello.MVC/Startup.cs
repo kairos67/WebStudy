@@ -1,5 +1,7 @@
 using Hello.BLL;
-using Hello.MSSQL.DAL;
+using Hello.IDAL;
+using Hello.Oracle.DAL;
+//using Hello.MSSQL.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,7 +32,8 @@ namespace Hello.MVC
             //2. .AddScoped<T>();
             //3. .AddTrasient<T>(); <------best
             services.AddTransient<UserBll>();
-            services.AddTransient<IDAL.IUserDal, UserDal>();
+
+            services.AddTransient<IUserDal, UserDal>();
 
             services.AddControllersWithViews();
         }

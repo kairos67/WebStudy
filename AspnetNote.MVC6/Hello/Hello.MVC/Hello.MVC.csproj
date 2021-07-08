@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <StartupObject>Hello.MVC.Program</StartupObject>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hello.BLL\Hello.BLL.csproj" />
+    <ProjectReference Include="..\Hello.MSSQL.DAL\Hello.MSSQL.DAL.csproj" />
+    <ProjectReference Include="..\Hello.Oracle.DAL\Hello.Oracle.DAL.csproj" />
+  </ItemGroup>
 
 </Project>
